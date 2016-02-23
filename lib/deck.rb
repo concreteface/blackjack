@@ -1,0 +1,26 @@
+require_relative 'card'
+class Deck
+  SUITS = ['diamonds', 'clubs', 'spades', 'hearts']
+  RANKS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A']
+
+  attr_accessor :cards
+
+  def initialize
+    @cards = build_deck
+  end
+
+  def build_deck
+    cards = []
+    SUITS.each do |suit|
+      RANKS.each do |rank|
+        cards << PlayingCard.new(rank, suit)
+      end
+    end
+    cards.shuffle!
+  end
+
+  def deal(num)
+    cards.pop(num)
+  end
+end
+
