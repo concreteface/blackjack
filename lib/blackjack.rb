@@ -31,7 +31,7 @@ class BlackJack
         stand = true
       end
     end
-    if player.calculate_hand <= 21 && player.cards.length != 2
+    if player.calculate_hand <= 21 
       computer.cards.each do |card|
         puts "Computer was dealt #{card.rank}#{card.suit}"
       end
@@ -48,7 +48,7 @@ class BlackJack
       elsif computer.calculate_hand > player.calculate_hand
         puts "Sorry, you lose"
       end
-    elsif player.calculate_hand == 21
+    elsif player.calculate_hand == 21 && player.cards.length == 2
       puts "Blackjack! You win!"
     elsif player.calculate_hand > 21
      puts "You've gone bust (you lose)."
@@ -56,4 +56,4 @@ class BlackJack
   end
 end
 
-# BlackJack.new.game
+BlackJack.new.game
