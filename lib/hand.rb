@@ -2,8 +2,10 @@ require_relative 'deck'
 
 class Hand
   attr_accessor :cards
-  def initialize(cards)
-    @cards = cards
+  def initialize
+  	deck = Deck.new
+  	deck.build_deck
+    @cards = deck.deal(2)
   end
 
   def calculate_hand
@@ -25,8 +27,7 @@ class Hand
   end
 end
 
-deck = Deck.new
-deck.build_deck
-hand = Hand.new(deck.deal(2))
-puts hand.cards[0].suit
+# hand = Hand.new
+# puts hand.cards[0].suit
+# puts hand.cards[1].suit
 
