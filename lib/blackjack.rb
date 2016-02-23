@@ -9,7 +9,8 @@ player.cards.each do |card|
   puts "Player was dealt #{card.rank}#{card.suit}"
 end
 num_cards = 2
-while player.calculate_hand < 21
+stand = false
+while player.calculate_hand < 21 && stand == false
   puts "Player score: #{player.calculate_hand}"
   puts "Hit or Stand? (H/S)"
   choice = gets.chomp
@@ -21,8 +22,29 @@ while player.calculate_hand < 21
   elsif choice.downcase == 's'
 
     puts "Player score: #{player.calculate_hand}"
-    break
+    stand = true
   end
+end
+
+if player.calculate_hand < 21
+  while computer.calculate_hand < 21
+    puts "Computer score: #{computer.calculate_hand}"
+    puts "Hit or Stand? (H/S)"
+    choice = gets.chomp
+
+    if choice.downcase == 'h'
+      computer.hit
+      num_cards += 1
+      puts "Computer was dealt #{computer.cards[num_cards - 1].rank}#{computer.cards[num_cards -1].suit}"
+    elsif choice.downcase == 's'
+
+      puts "Computer score: #{computer.calculate_hand}"
+      break
+    end
+  end
+elsif player.calculate_hand == 21
+  puts "Blackjack! You win!"
+else puts "You're busted..."
 end
 
 
