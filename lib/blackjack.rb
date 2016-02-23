@@ -1,8 +1,8 @@
 require_relative "deck"
 require_relative "hand"
-
-player = Hand.new
-computer = Hand.new
+deck = Deck.new
+player = Hand.new(deck)
+computer = Hand.new(deck)
 
 puts 'Welcome to Blackjack!'
 player.cards.each do |card|

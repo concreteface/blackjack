@@ -3,8 +3,8 @@ require_relative 'deck'
 class Hand
   attr_accessor :cards
   attr_reader :deck
-  def initialize
-    @deck = Deck.new
+  def initialize(deck)
+    @deck = deck
     @deck.build_deck
     @cards = deck.deal(2)
   end
