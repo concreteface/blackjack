@@ -32,9 +32,3 @@ class Hand
   end
 
 end
-
-# hand = Hand.new
-# puts hand.cards[0].suit
-# puts hand.cards[1].suit
-# hand.hit
-# puts hand.cards[2].rank
