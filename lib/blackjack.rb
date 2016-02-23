@@ -2,7 +2,7 @@ require_relative "deck"
 require_relative "hand"
 
 class BlackJack
-  attr_reader :deck, :player, :computer
+  attr_accessor :deck, :player, :computer
 
   def initialize
     @deck = Deck.new
@@ -31,7 +31,7 @@ class BlackJack
         stand = true
       end
     end
-    if player.calculate_hand <= 21
+    if player.calculate_hand <= 21 && player.cards.length != 2
       computer.cards.each do |card|
         puts "Computer was dealt #{card.rank}#{card.suit}"
       end
@@ -48,9 +48,10 @@ class BlackJack
       elsif computer.calculate_hand > player.calculate_hand
         puts "Sorry, you lose"
       end
-    elsif player.calculate_hand == 21 && player.cards.length == 2
+    elsif player.calculate_hand == 21
       puts "Blackjack! You win!"
-    else puts "You've gone bust (you lose)."
+    elsif player.calculate_hand > 21
+     puts "You've gone bust (you lose)."
     end
   end
 end
