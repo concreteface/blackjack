@@ -30,17 +30,23 @@ if player.calculate_hand < 21
   computer.cards.each do |card|
     puts "Computer was dealt #{card.rank}#{card.suit}"
   end
-computer_num_cards = 2
+  computer_num_cards = 2
   while computer.calculate_hand < 21 && computer.calculate_hand <= player.calculate_hand
     puts "Computer score: #{computer.calculate_hand}"
     computer.hit
     computer_num_cards += 1
-      puts "Computer was dealt #{computer.cards[computer_num_cards - 1].rank}#{computer.cards[computer_num_cards -1].suit}"
+    puts "Computer was dealt #{computer.cards[computer_num_cards - 1].rank}#{computer.cards[computer_num_cards -1].suit}"
   end
   puts "Computer score: #{computer.calculate_hand}"
+  if computer.calculate_hand > 21
+    puts "The computer busted...you win!"
+  elsif computer.calculate_hand > player.calculate_hand
+    puts "Sorry, you lose"
+  end
+
 elsif player.calculate_hand == 21 && player.cards.length == 2
   puts "Blackjack! You win!"
-else puts "You're busted..."
+else puts "You've gone bust (you lose)."
 end
 
 
