@@ -29,7 +29,4 @@ class Hand
   def hit
     @cards << deck.deal(1)[0]
   end
-
 end
-# hand = Hand.new(Deck.new)
-# puts hand.cards

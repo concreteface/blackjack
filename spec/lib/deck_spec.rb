@@ -12,13 +12,13 @@ describe Deck do
       expect(deck.cards.uniq.size).to eq 52
     end
 
-    # it "shuffles deck after being built" do
-    #   expect(deck.cards.sort).to_not eq deck.cards
-
-    #   expect(deck.cards.sort[0..1]).to eq ["10♠", "10♣"]
-    # end
+    it "shuffles deck after being built" do
+      cards1 = deck.cards
+      cards2 = deck.cards.sort_by {|card| card.rank.to_i}
+      expect(cards1).to_not eq cards2
+    end
   end
-
+  
   describe "#deal" do
     it "removes correct number of cards" do
       start_size = deck.cards.size

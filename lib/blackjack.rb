@@ -6,7 +6,6 @@ class BlackJack
 
   def initialize
     @deck = Deck.new
-    @deck.build_deck
     @player = Hand.new(@deck)
     @computer = Hand.new(@deck)
   end
