@@ -13,12 +13,13 @@ describe BlackJack do
   end
 
   describe "#game" do
-    before do
-      expect(blackjack_game).to receive(:gets).and_return('s').once
-    end
-
-    it 'welcomes the player' do
+    it 'plays a blackjack game' do
+      allow(blackjack_game).to receive(:gets).and_return('s').exactly(2).times
       expect{blackjack_game.game}.to output(/Welcome to Blackjack/).to_stdout
+      expect{blackjack_game.game}.to output(/Player was dealt/).to_stdout
+      allow(blackjack_game).to receive(:gets).and_return('h').at_least(2).times
+      expect{blackjack_game.game}.to output(/Welcome to Blackjack/).to_stdout
+      expect{blackjack_game.game}.to output(/Player was dealt/).to_stdout
     end
   end
 end
