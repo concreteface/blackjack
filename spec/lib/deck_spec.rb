@@ -8,9 +8,9 @@ describe Deck do
       expect(deck.cards.size).to eq 52
     end
 
-    # it "creates unique cards" do
-    #   expect(deck.cards.uniq.size).to eq 52
-    # end
+    it "creates unique cards" do
+      expect(deck.cards.uniq.size).to eq 52
+    end
 
     # it "shuffles deck after being built" do
     #   expect(deck.cards.sort).to_not eq deck.cards

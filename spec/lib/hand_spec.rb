@@ -3,7 +3,8 @@ require "spec_helper"
 describe Hand do
   # These UTF-8 characters will be useful for making different hands:
   # '♦', '♣', '♠', '♥'
-  let(:hand) { hand = Hand.new }
+  deck = Deck.new
+  let(:hand) { hand = Hand.new(deck) }
   it 'has 2 playing card objects' do
     expect(hand.cards.length).to eq(2)
     expect(hand.cards[0]).to be_a(PlayingCard)
@@ -26,7 +27,7 @@ describe Hand do
   end
 
   describe "#hit" do
-    let(:hand) { hand = Hand.new }
+    let(:hand) { hand = Hand.new(deck) }
     it 'adds a card to the hand' do
       hand.hit
       expect(hand.cards.length).to eq(3)

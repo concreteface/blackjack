@@ -5,7 +5,6 @@ class Hand
   attr_reader :deck
   def initialize(deck)
     @deck = deck
-    @deck.build_deck
     @cards = deck.deal(2)
   end
 
@@ -32,3 +31,5 @@ class Hand
   end
 
 end
+# hand = Hand.new(Deck.new)
+# puts hand.cards
