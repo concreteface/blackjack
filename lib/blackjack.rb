@@ -12,13 +12,11 @@ class BlackJack
 
   def game
     puts 'Welcome to Blackjack!'
-    player.cards.each do |card|
-      puts "Player was dealt #{card.rank}#{card.suit}"
-    end
+    starting_hand_player
     num_cards = 2
     stand = false
-    while player.calculate_hand < 21 && stand == false
-      puts "Player score: #{player.calculate_hand}"
+    while calculate_score(player) < 21 && stand == false
+      puts "Player score: #{calculate_score(player)}"
       puts "Hit or Stand? (H/S)"
       choice = gets.chomp
       if choice.downcase == 'h'
@@ -26,39 +24,51 @@ class BlackJack
         num_cards += 1
         puts "Player was dealt #{player.cards[num_cards - 1].rank}#{player.cards[num_cards -1].suit}"
       elsif choice.downcase == 's'
-        puts "Player score: #{player.calculate_hand}"
+        puts "Player score: #{calculate_score(player)}"
         stand = true
       end
     end
-    if player.calculate_hand <= 21
+    if calculate_score(player) <= 21
 
-      if player.calculate_hand == 21 && player.cards.length == 2
+      if calculate_score(player) == 21 && player.cards.length == 2
         puts "Blackjack! You win!"
-      elsif player.calculate_hand == 21
+      elsif calculate_score(player) == 21
         puts "You win!"
       else
-
-        computer.cards.each do |card|
-          puts "Computer was dealt #{card.rank}#{card.suit}"
-        end
+        starting_hand_computer
         computer_num_cards = 2
-        while computer.calculate_hand < 21 && computer.calculate_hand <= player.calculate_hand
-          puts "Computer score: #{computer.calculate_hand}"
+        while calculate_score(computer) < 21 && calculate_score(computer) <= calculate_score(player)
+          puts "Computer score: #{calculate_score(computer)}"
           computer.hit
           computer_num_cards += 1
           puts "Computer was dealt #{computer.cards[computer_num_cards - 1].rank}#{computer.cards[computer_num_cards -1].suit}"
         end
-        puts "Computer score: #{computer.calculate_hand}"
-        if computer.calculate_hand > 21
+        puts "Computer score: #{calculate_score(computer)}"
+        if calculate_score(computer) > 21
           puts "The computer busted...you win!"
-        elsif computer.calculate_hand > player.calculate_hand
+        elsif calculate_score(computer) > calculate_score(player)
           puts "Sorry, you lose"
         end
       end
-    elsif player.calculate_hand > 21
+    elsif calculate_score(player) > 21
       puts "You've gone bust (you lose)."
     end
   end
 end
 
-# BlackJack.new.game
+def starting_hand_player
+  player.cards.each do |card|
+    puts "Player was dealt #{card.rank}#{card.suit}"
+  end
+end
+
+def starting_hand_computer
+  computer.cards.each do |card|
+    puts "Computer was dealt #{card.rank}#{card.suit}"
+  end
+end
+
+def calculate_score(whose)
+  whose.calculate_hand
+end
+BlackJack.new.game
