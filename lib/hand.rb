@@ -23,10 +23,15 @@ class Hand
       else no_suit.to_i
       end
     end
-    sum
+    if @cards.any?{|c| c.rank == 'A'} && sum > 21
+      sum - 10
+    else sum
+    end
   end
 
   def hit
     @cards << deck.deal(1)[0]
   end
 end
+
+
